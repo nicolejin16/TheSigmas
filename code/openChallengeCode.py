@@ -23,8 +23,8 @@ pw_Servo = 1390  # Convert angle to pulse width
 board.pwm_servo_set_position(0.1, [[4, pw_BLDC]])
 board.pwm_servo_set_position(0.1, [[2, pw_Servo]])
 
-min_servo = 1300
-max_servo = 1720
+min_servo = 1280
+max_servo = 1500
 
 min_bldc = 1300
 max_bldc = 1700
@@ -34,8 +34,8 @@ lower_black = np.array([0, 0, 0])
 upper_black = np.array([90, 60, 60])
 
 #define two ROIs
-roiLeft = (40, 170, 60, 80)
-roiRight = (540, 170, 60, 80)
+roiLeft = (20, 190, 60, 80)
+roiRight = (560, 190, 60, 80)
 
 while True:
     frame = picam2.capture_array()
