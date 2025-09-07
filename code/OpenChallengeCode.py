@@ -1,16 +1,58 @@
 import sys
 import time
-import ros_robot_controller_sdk as rrc
-from readchar import readkey, key
+import threading
+import subprocess
 import cv2
 import numpy as np
 from picamera2 import Picamera2
+import ros_robot_controller_sdk as rrc
+import os
+import signal
 
 # Handle debug mode
 n = len(sys.argv)
 debugMode = 0
 if n > 1 and sys.argv[1] == "Debug":
     debugMode = 1
+
+button_pressed = False
+
+start = True
+
+# === Button Listening Function ===
+def listen_to_button_events():
+    global button_pressed
+    command = 'source /home/ubuntu/.zshrc && ros2 topic echo /ros_robot_controller/button'
+    process = subprocess.Popen(
+        ['docker', 'exec', '-u', 'ubuntu', '-w', '/home/ubuntu', 'MentorPi', '/bin/zsh', '-c', command],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True
+    )
+
+    button_id = None
+    while not button_pressed:
+        output = process.stdout.readline()
+        if output:
+            line = output.strip()
+            if line.startswith("id:"):
+                button_id = int(line.split(":")[1].strip())
+            elif line.startswith("state:"):
+                state = int(line.split(":")[1].strip())
+                if button_id == 1 and state == 1:
+                    print("Button 1 pressed: Starting robot.")
+                    button_pressed = True
+                    break
+
+def Stop(signum, frame):
+    global start
+    start = False
+    print('closing...')
+
+
+board = rrc.Board()
+
+board.set_rgb([[1, 0, 0, 0], [2, 0, 0, 0]])
 
 # Initialize the camera
 picam2 = Picamera2()
@@ -20,8 +62,28 @@ picam2.configure("preview")
 picam2.start()
 time.sleep(1)
 
-# Initialize robot board
-board = rrc.Board()
+def check_node_status():
+    command = 'source /home/ubuntu/.zshrc && ros2 topic list'
+    result = subprocess.run(
+        ['docker', 'exec', '-u', 'ubuntu', '-w', '/home/ubuntu', 'MentorPi', '/bin/zsh', '-c', command], capture_output=True, text=True)
+    res = result.stdout
+    return '/ros_robot_controller/button' in res
+
+while not check_node_status():
+    time.sleep(0.01)
+
+# === Start Button Listener Thread ===
+button_thread = threading.Thread(target=listen_to_button_events, daemon=True)
+button_thread.start()
+
+#set both red
+board.set_rgb([[1, 255, 0, 0], [2, 255, 0, 0]])
+print(" Robot ready. Waiting for Button 1...")
+
+# === Wait for Button Press ===
+while not button_pressed:
+    time.sleep(0.01)
+board.set_rgb([[1, 0, 0, 0], [2, 0, 0, 0]])
 
 # Constants
 pw_BLDC = 1615
@@ -35,7 +97,7 @@ min_bldc = 1300
 max_bldc = 1700
 
 # Proportional gain constant (tune this)
-Kp = 0.03
+Kp = 0.075
 
 # Color thresholds
 lower_black = np.array([0, 0, 0])
@@ -47,10 +109,10 @@ upper_orange = np.array([60, 160, 255])
 lower_blue = np.array([100, 0, 0])
 upper_blue = np.array([255, 80, 80])
 # Regions of interest
-roiLeft = (40, 270, 200, 50)
-roiRight = (440, 270, 200, 50)
-roiOrange = (200, 240, 240, 50)
-roiBlue = (200, 240, 240, 50)
+roiLeft = (20, 260, 200, 50)
+roiRight = (440, 260, 200, 50)
+roiOrange = (220, 240, 240, 50)
+roiBlue = (220, 240, 240, 50)
 # Start motors
 board.pwm_servo_set_position(0.1, [[2, pw_BLDC]])
 board.pwm_servo_set_position(0.1, [[4, center_servo]])
@@ -162,3 +224,4 @@ while True:
 # Cleanup
 board.pwm_servo_set_position(0.1, [[2, pw_BLDC_stop]])
 picam2.stop()
+
