@@ -3,7 +3,8 @@
 - `3DModel` 3D Models of RC car made with Autodest Fusion
 - `TeamPhotos` 4 team photos
 - `CarPhotos` Photos of RC car from all angles (front, back, left, right, top, bottom)
-- `code` contains code for Open Challenge 
+- `code` contains code for Open Challenge
+- `schematics` contains wiring diagram
 - `video` contains video with voiceover of Open Challenge 
 
 # Team Members
@@ -14,7 +15,7 @@
 
 
 
-# Software
+# Hardware
 ---
 - Raspberry pi 5
 - Raspberry pi 5 Active Cooler
