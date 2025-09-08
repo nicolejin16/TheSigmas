@@ -1,10 +1,10 @@
 # Content of Repository
 ---
-- `3DModel` 3D Models of RC car made with Autodest Fusion
-- `TeamPhotos` 4 team photos
-- `CarPhotos` Photos of RC car from all angles (front, back, left, right, top, bottom)
-- `code` contains code for Open Challenge
-- `schematics` contains wiring diagram
+- `models` 3D Models of RC car made with Autodest Fusion
+- `t-photos` 4 team photos
+- `v-photos` Photos of RC car from all angles (front, back, left, right, top, bottom)
+- `src` contains code for Open Challenge
+- `schemes` contains wiring diagram
 - `video` contains video with voiceover of Open Challenge 
 
 # Team Members
