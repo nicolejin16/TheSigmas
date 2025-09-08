@@ -17,6 +17,7 @@
 # Software
 ---
 - Raspberry pi 5
+- Raspberry pi 5 Active Cooler
 - Hiwonder RRC Controller Lite
 - Arducam 8MP IMX219 175 Degree Ultra Wide Angle Raspberry Pi Camera Module (Camera)
 - Furitek Micro Komodo Brushless Motor (BLDC Motor)
