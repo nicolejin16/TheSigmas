@@ -19,7 +19,7 @@
 - Raspberry pi 5
 - Hiwonder RRC Controller Lite
 - Arducam 8MP IMX219 175 Degree Ultra Wide Angle Raspberry Pi Camera Module (Camera)
-- Furitek Stinger Brushless Power System (BLDC Motor)
+- Furitek Micro Komodo Brushless Motor (BLDC Motor)
 - HS-5055MG Metal Micro Gear Micro Servo Motor
 - HQ RC Car RWD Rear-drive Drift Racing Frame 1/24 Remote Control Vehicle (Chassis)
 
