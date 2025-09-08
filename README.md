@@ -1,15 +1,33 @@
-# WRO Future Engineers Getting Started
+# Content of Repository
+---
+- `3DModel` 3D Models of RC car made with Autodest Fusion
+- `TeamPhotos` 4 team photos
+- `CarPhotos` Photos of RC car from all angles (front, back, left, right, top, bottom)
+- `code` contains code for Open Challenge 
+- `video` contains video with voiceover of Open Challenge 
 
-This repository contains a set of materials to help students and their coaches to start preparing to the WRO Future Engineers competition.
+# Team Members
+---
+- Summer Lu, 16 summerlyu@gmail.com
+- Nicole Jin, 15 nicolejin27@gmail.com
+- Nathan Li, 15 nathanl6675@gmail.com
 
-The WRO Future Engineers is the competition of the self-driven vehicles. Students of the age group from 15 till 19 need to design a model of a car, equip it with electromechanical components and program it as so it will be able to autonomously drive on the track avoiding objections.
 
-More details about the competition can be found on [the official site of WRO Association](https://wro-association.org/competition/new-competition-formats/future-engineers).
 
-<img src="docs/img/fe-map.png" width="640">
+# Software
+---
+- Raspberry pi 5
+- Raspberry pi 5 Active Cooler
+- Hiwonder RRC Controller Lite
+- Arducam 8MP IMX219 175 Degree Ultra Wide Angle Raspberry Pi Camera Module (Camera)
+- Furitek Micro Komodo Brushless Motor (BLDC Motor)
+- HS-5055MG Metal Micro Gear Micro Servo Motor
+- HQ RC Car RWD Rear-drive Drift Racing Frame 1/24 Remote Control Vehicle (Chassis)
 
-The materials are intended to be build with the [Mkdocs](https://www.mkdocs.org/) site generator.
+# Model
+---
+  RC car model designed with Autodesk Fusion
 
-The example of the site is accessible by https://world-robot-olympiad-association.github.io/future-engineers-gs/.
-
-_If you have any suggestions or found some bugs/inconsistencies please report them in form of [the GitHub issue](https://github.com/World-Robot-Olympiad-Association/future-engineers-gs/issues/new)._
+# 3D printing
+---
+  3D printing by Prusa MK4
